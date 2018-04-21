@@ -2,7 +2,7 @@ from Bio import SeqIO
 
 import sys
 
-def main(argv):
+def strip_seqs(argv):
 
     input_file = argv[0]
     output_file = "test.fna"
@@ -25,4 +25,4 @@ def write_empty(fasta_sequences, output_file):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    strip_seqs(sys.argv[1:])

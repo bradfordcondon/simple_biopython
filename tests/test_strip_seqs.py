@@ -1,4 +1,7 @@
 import unittest
+import staton_biopy
+
+from staton_biopy import strip_seqs
 
 
 
