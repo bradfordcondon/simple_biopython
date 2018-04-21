@@ -1,12 +1,11 @@
 from Bio import SeqIO
-import sys, getopt, math, os, re
+import sys, getopt, math, re
 
 
 def main(argv):
     usage = 'split_fasta.py -i <input file> -n <number of output files>'
     input_file = ''
     out_count = 1
-    start_path = os.getcwd()
     try:
         opts, args = getopt.getopt(argv, "hi:n:", ["ifile="])
         # all of the tutorials use getOptError but mine was out of date!
