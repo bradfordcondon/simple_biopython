@@ -1,11 +1,12 @@
 from Bio import SeqIO
-import sys, getopt, math
+import sys, getopt, math, os, re
 
 
 def main(argv):
     usage = 'split_fasta.py -i <input file> -n <number of output files>'
     input_file = ''
     out_count = 1
+    start_path = os.getcwd()
     try:
         opts, args = getopt.getopt(argv, "hi:n:", ["ifile="])
         # all of the tutorials use getOptError but mine was out of date!
@@ -34,7 +35,10 @@ def main(argv):
     print(str(total_count) + " input sequences.  Generating " + str(int(bite_size)) + " output files" )
 
     placeholder = 1
-    output_file = input_file + "." + str(placeholder)
+
+    out_prefix = re.sub('.*(.*\/)', '', input_file)
+
+    output_file = out_prefix + "." + str(placeholder)
 
     ofh = open(output_file, "w")
 
@@ -45,7 +49,7 @@ def main(argv):
             print "Processing sequence " + str(placeholder)
         if placeholder % bite_size == 0:
             ofh.close()
-            output_file = input_file + "." + str(int(placeholder / bite_size))
+            output_file = out_prefix + "." + str(int(placeholder / bite_size))
             ofh = open(output_file, "w")
         name, sequence = fasta.id, str(fasta.seq)
         ofh.write('>' + name + '\n' + sequence + '\n')
@@ -54,3 +58,11 @@ def main(argv):
 
 if __name__ == "__main__":
     main(sys.argv[1:])
+
+    """"
+    A module can discover whether or not it is
+     running in the main scope by checking its own __name__,
+      which allows a common idiom for conditionally executing code 
+      in a module when it is run as a script or
+     with python -m but not when it is imported:
+    """
