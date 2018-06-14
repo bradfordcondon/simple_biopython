@@ -4,7 +4,6 @@ import csv
 
 def convert_gff(argv):
     input_file = argv[0]
-    source = input_file
 
     output_file = input_file + ".gff"
     with open(input_file, "r") as datafile:
@@ -21,16 +20,16 @@ def convert_gff(argv):
             p_sim = split[11]
             q_strand = split[17]
 
+            attributes = "ID=" + query_id + ", Name=" + query_id + ";"
+
             final = "\t"
-            print final.join([reference_id, source,
-                              "type", r_start,
-                              r_end,"na",
-                              q_strand, "na",
-                              "attributes", query_id,
-                              query_id, '',
-                              '', '',
-                              '', '',
-                              '', 'false'])
+            print final.join([reference_id, "nucmer",
+                              "alignment", r_start,
+                              r_end,".",
+                              q_strand, ".",
+                              attributes
+
+                              ])
 
             "GFF format:" \
             "0: seqid" \
