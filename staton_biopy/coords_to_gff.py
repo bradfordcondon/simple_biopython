@@ -20,12 +20,12 @@ def convert_gff(argv):
             p_sim = split[11]
             q_strand = split[17]
 
-            attributes = "ID=" + query_id + ", Name=" + query_id + ";"
+            attributes = "ID=" + reference_id + ", Name=" + reference_id + ";"
 
             final = "\t"
-            print final.join([reference_id, "nucmer",
-                              "alignment", r_start,
-                              r_end,".",
+            print final.join([query_id, "nucmer",
+                              "alignment", q_start,
+                              q_end,".",
                               q_strand, ".",
                               attributes
 
