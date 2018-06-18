@@ -19,14 +19,23 @@ def convert_gff(argv):
             p_id = split[10]
             p_sim = split[11]
             q_strand = split[17]
+            print_strand = "+"
 
-            attributes = "ID=" + reference_id + ", Name=" + reference_id + ";"
+            print_start = q_start
+            print_end = q_end
+
+            if q_strand == "Minus":
+                print_strand = "-"
+                print_start = q_end
+                print_end = q_start
+
+            attributes = "ID=" + reference_id + "; Name=" + reference_id + ";"
 
             final = "\t"
             print final.join([query_id, "nucmer",
-                              "alignment", q_start,
-                              q_end,".",
-                              q_strand, ".",
+                              "alignment", print_start,
+                              print_end,".",
+                              print_strand, ".",
                               attributes
 
                               ])
