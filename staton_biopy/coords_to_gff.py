@@ -1,5 +1,6 @@
 import sys
 import csv
+import pprint
 
 
 def convert_gff(argv):
@@ -48,7 +49,7 @@ def convert_gff(argv):
             parent_start = record["start"]
             parent_end = record["end"]
             strand = record["strand"]
-            attributes = "ID=" + reference_id + "; Name=" + reference_id + ";"
+            attributes = "ID=" + parent_id + "; Name=" + parent_id + ";"
             print_out(query_id, parent_start, parent_end, strand, attributes)
             count = 1
 
