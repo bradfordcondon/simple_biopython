@@ -26,3 +26,36 @@ jcf7180001222195	maker	gene	15712	17481	.	-	.	ID=WALNUT_00009338;Name=WALNUT_000
 jcf7180001222195	maker	mRNA	15712	17481	.	-	.	ID=Juglans_regia_01182017_WALNUT_00009338-RA_mRNA;Parent=WALNUT_00009338;Name=Juglans_regia_01182017_WALNUT_00009338-RA_mRNA;Alias=PREDICTED: transcription factor bHLH91-like,Interpro:IPR011598,Pfam:PF00010;Note=high_quality_complete_model;
 
 ```
+
+## generate_biomaterials
+
+A simple script that generates fake biomaterials XML.  There are 5 properties for each biomaterial: one is a constant type with one of two values (ensuring there are properties to compare).  One's value is a number.
+
+Usage:
+
+` python generate_biomaterials.py [number of biomaterials to create]`
+
+example output (formatted for legibility):
+
+```xml
+<BioSampleSet>
+	<BioSample accession="let" id="billion" submission_date="1987-01-21">
+		<IDs db="BioSample" is_primary="1">let</IDs>
+		<Description>Individual democratic military far investment feeling.</Description>
+		<Owner>
+			<Name>Andrew Lowery</Name>
+			<Address>15300 Kimberly Cove
+New Aimeeberg, WY 70035</Address>
+		</Owner>
+		<Attributes>
+			<Attribute attribute_name="system" display_name="system" harmonized_name="system">short</Attribute>
+			<Attribute attribute_name="day" display_name="day" harmonized_name="day">dream</Attribute>
+			<Attribute attribute_name="conference" display_name="conference" harmonized_name="conference">north</Attribute>
+			<Attribute attribute_name="movie" display_name="movie" harmonized_name="movie">despite</Attribute>
+			<Attribute attribute_name="information" display_name="information" harmonized_name="information">forget</Attribute>
+			<Attribute attribute_name="relationship">24</Attribute>
+		</Attributes>
+	</BioSample>
+	</BioSampleSet>
+```
+
