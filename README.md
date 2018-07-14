@@ -59,3 +59,11 @@ New Aimeeberg, WY 70035</Address>
 	</BioSampleSet>
 ```
 
+## generate_expression
+
+Usage:
+
+`python generate_expression.py [biomaterials xml] [fasta file]`
+
+Creates a tab delimited expression dataset (with random values between 1 and 1000).
+

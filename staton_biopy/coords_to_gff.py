@@ -36,12 +36,12 @@ def convert_gff(argv):
                     prev_start = current["start"]
                     prev_end = current["end"]
                     sections = current["sections"]
-                    if q_start < prev_start:
+                    if int(q_start) < int(prev_start):
                         current["start"] = q_start
-                    if q_end > prev_end:
-                        current["end"] = prev_end
+                    if int(q_end) > int(prev_end):
+                        current["end"] = q_end
                     sections.append(line)
-                    parent[reference_id][query_id] = {"start": q_start, "end": q_end, "strand": strand,
+                    parent[reference_id][query_id] = {"start": current["start"], "end": current["end"], "strand": strand,
                                                       "sections": sections}
 
     for parent_id, query_package in parent.items():

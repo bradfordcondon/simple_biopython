@@ -1,11 +1,11 @@
 import sys
 import xml.etree.cElementTree as ET
 from faker import Faker
+import random
 
 
 def create_biomaterials(num_biomats):
     fake = Faker()
-
     output_file = "biomaterials.xml"
     root = ET.Element("BioSampleSet")
     count = 0
@@ -20,7 +20,7 @@ def create_biomaterials(num_biomats):
         ET.SubElement(biosample, "IDs", db="BioSample", is_primary="1").text = accession
         ET.SubElement(biosample, "Description").text = fake.sentence()
         owner = ET.SubElement(biosample, "Owner")
-        ET.SubElement(owner, "Name",).text = fake.name()
+        ET.SubElement(owner, "Name", ).text = fake.name()
         ET.SubElement(owner, "Address").text = fake.address()
         attributes = ET.SubElement(biosample, "Attributes")
         attribute_count = 0
@@ -37,8 +37,9 @@ def create_biomaterials(num_biomats):
         ET.SubElement(attributes, "Attribute", attribute_name=constant_property,
                       harmonized_name=constant_property,
                       display_name=constant_property).text = this_constant_attr_text
+        ET.SubElement(attributes, "Attribute", attribute_name=fake.word(),
+                      ).text = str(random.randint(1, 101))
 
-        ET.SubElement(attributes, "attribute")
         count += 1
 
     tree = ET.ElementTree(root)
