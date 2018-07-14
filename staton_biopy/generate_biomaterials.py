@@ -9,11 +9,11 @@ def create_biomaterials(num_biomats):
     output_file = "biomaterials.xml"
     root = ET.Element("BioSampleSet")
     count = 0
-    while count < int(num_biomats):
-        constant_property = fake.word()
-        constant_value_1 = fake.word()
-        constant_value_2 = fake.word()
+    constant_property = fake.word()
+    constant_value_1 = fake.word()
+    constant_value_2 = fake.word()
 
+    while count < int(num_biomats):
         accession = fake.word()
         biosample = ET.SubElement(root, "BioSample", submission_date=fake.date(), id=fake.word(), accession=accession)
 
