@@ -67,3 +67,12 @@ Usage:
 
 Creates a tab delimited expression dataset (with random values between 1 and 1000).
 
+
+## minify_dataset
+
+`python minify_dataset.py [number of mRNA to use] [mrna FASTA file] [GFF file]`
+
+Given n, a FASTA file, & a GFF file, trim the FASTA file down to n.  
+Then, remove all items from the GFF not containing the mRNA.
+Next, run `trim_polypeptide` to trim the polypeptide FASTA down to the mRNA 
+(it is a seperate command because a REGEXP is required to link the two.)
