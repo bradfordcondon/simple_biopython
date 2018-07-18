@@ -41,26 +41,28 @@ def main(argv):
 
 
 def simple_gff_trimmer(gff_path, selected_mrna):
-    with open(gff_path, 'rb') as tsvin, open('new.csv', 'wb') as csvout:
+    with open(gff_path, 'rb') as tsvin, open('filtered.gff', 'wb') as gffout:
         tsvin = csv.reader(tsvin, delimiter='\t')
-        csvout = csv.writer(csvout)
+        csvout = csv.writer(gffout, delimiter='\t')
+        csvout.writerow(['##gff-version 3'])
         write = False
 
         for row in tsvin:
             if len(row) > 1:
                 contig = row[0]
-                type = row[3]
+                type = row[2]
                 info = row[-1]
                 if type == 'mRNA':
                     write = False
                     info_split = info.split(';')
                     id = info_split[0]
-                    if 'ID=' + id in selected_mrna:
+                    id = id.replace('ID=', '')
+                    if id in selected_mrna:
                         write = True
-                        csvout.write(row)
+                        csvout.writerow(row)
                 else:
                     if write:
-                        csvout.write(row)
+                        csvout.writerow(row)
 
 
 if __name__ == "__main__":
