@@ -47,19 +47,20 @@ def simple_gff_trimmer(gff_path, selected_mrna):
         write = False
 
         for row in tsvin:
-            contig = row[0]
-            type = row[3]
-            info = row[-1]
-            if type == 'mRNA':
-                write = False
-                info_split = info.split(';')
-                id = info_split[0]
-                if 'ID=' + id in selected_mrna:
-                    write = True
-                    csvout.write(row)
-            else:
-                if write:
-                    csvout.write(row)
+            if len(row) > 1:
+                contig = row[0]
+                type = row[3]
+                info = row[-1]
+                if type == 'mRNA':
+                    write = False
+                    info_split = info.split(';')
+                    id = info_split[0]
+                    if 'ID=' + id in selected_mrna:
+                        write = True
+                        csvout.write(row)
+                else:
+                    if write:
+                        csvout.write(row)
 
 
 if __name__ == "__main__":
