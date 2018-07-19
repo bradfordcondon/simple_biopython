@@ -76,3 +76,14 @@ Given n, a FASTA file, & a GFF file, trim the FASTA file down to n.
 Then, remove all items from the GFF not containing the mRNA.
 Next, run `trim_polypeptide` to trim the polypeptide FASTA down to the mRNA 
 (it is a seperate command because a REGEXP is required to link the two.)
+
+## trim polypeptide.py
+
+This script trims one fasta file against another given a regexp.  In our use case, we match the protein sequences against the mRNA, given a Regexp.
+The regexp should search the protein name and give the corresponding mRNA name.
+
+   `python trim_polypeptide.py [trimmed mrna FASTA] [polypeptide FASTA] [regexp]`
+
+```shell
+python staton_biopy/trim_polypeptide.py mrna_mini.fasta input_data/FexcelsiorAA.minoas.fasta '(FRA.*?)(?=:)'
+```

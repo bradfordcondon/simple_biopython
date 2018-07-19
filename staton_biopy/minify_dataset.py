@@ -1,9 +1,6 @@
 from Bio import SeqIO
-import sys, getopt, math, re
-from BCBio.GFF import GFFExaminer
+import sys
 from os import path
-import pprint
-from BCBio import GFF
 import csv
 
 
@@ -73,27 +70,3 @@ if __name__ == "__main__":
     Pick N mRNA at random and trim everything down to that.
 
     """
-
-"""
-This function didnt quite work out for me.  It should read in a GFF file, cross ref to the included mRNA, and print the matching child/parents
-"""
-
-
-def failed_GFF_Trimmer(gff_path, selected_mrna):
-    examiner = GFFExaminer()
-    in_handle = open(gff_path)
-    out_handle = open("out.gff", "w")
-
-    selected_parents = {}
-
-    for parent in GFF.parse(in_handle):
-        for child in parent.features:
-            for child_two in child.sub_features:
-                if child_two.type == 'mRNA':
-                    if child_two.id in selected_mrna:
-                        selected_parents[parent.id] = parent
-
-    for parent in selected_parents:
-        item = selected_parents[parent]
-        print(item)
-        GFF.write(item, out_handle)
