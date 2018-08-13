@@ -32,7 +32,7 @@ def main(argv):
     for fasta in fasta_sequences:
         prot_name, sequence = fasta.id, str(fasta.seq)
         #prot_transformed = re.match(regexp, prot_name)
-        prot_transformed = re.match(r'/(FRA.*?)(?=:)/', prot_name)
+        prot_transformed = re.match(r'(FRA.*?)(?=:)', prot_name)
 
         if prot_transformed:
             print ("there was a match")
