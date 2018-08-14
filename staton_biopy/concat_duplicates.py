@@ -33,17 +33,17 @@ def main(argv):
     fasta_sequences = SeqIO.parse(open(input_file), 'fasta')
     for fasta in fasta_sequences:
         name, sequence = fasta.id, str(fasta.seq)
-    if name in duplicate_names:
-        new_seq = sequence
-        if name in duplicate_seqs:
-            new_seq = duplicate_seqs[name]
-            #remove * from sequence
-            length = len(new_seq)
-            new_seq = new_seq[1:length]
-            new_seq = new_seq + sequence
-        duplicate_seqs[name] = new_seq
-    else:
-        ofh.write('>' + name + '\n' + sequence + '\n')
+        if (name) in duplicate_names.keys():
+            new_seq = sequence
+            if name in duplicate_seqs.keys():
+                new_seq = duplicate_seqs[name]
+                #remove * from sequence
+                length = len(new_seq)
+                new_seq = new_seq[1:length]
+                new_seq = new_seq + sequence
+            duplicate_seqs[name] = new_seq
+        else:
+            ofh.write('>' + name + '\n' + sequence + '\n')
 
     for name, sequence in duplicate_seqs.items():
         ofh.write('>' + name + '\n' + sequence + '\n')
